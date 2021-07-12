@@ -19,10 +19,16 @@ def deal():
 
 def hitme():
     myCards.append(cards[random.randint(0,len(cards) - 1)])
+    print("Your cards: ")
+    print(myCards)
+    print("Dealer cards: ")
+    firstDealerCard = str(dealerCards[0])
     if(sumCards(myCards) > 21):
         print("Game Over! You Lose!")
         print(myCards)
+        print("Your score: " + str(sumCards(myCards) ))
         print(dealerCards)
+        print("Dealer score: "  + str(sumCards(dealerCards)))
 
 def sumCards(cards):
     total = 0
@@ -49,10 +55,27 @@ def dealer():
 
 
 deal()
-print(myCards)
-print(dealerCards)
-hitme()
-print(myCards)
-print(sumCards(myCards))
+wannaHit = input("Do you want to hit? 'y' for yes, 'n' for no.\n")
+print(wannaHit)
+while(wannaHit == "y"):
+    hitme()
+    wannaHit = input("Do you want to hit? 'y' for yes, 'n' for no.")
 dealer()
-print(sumCards(dealerCards))
+if(sumCards(dealerCards) > 21 or sumCards(myCards) > sumCards(dealerCards)):
+    print("You win!")
+    print(myCards)
+    print("Your score: " + str(sumCards(myCards) ))
+    print(dealerCards)
+    print("Dealer score: "  + str(sumCards(dealerCards)))
+elif(sumCards(myCards) == sumCards(dealerCards)):
+    print("Push!")
+    print(myCards)
+    print("Your score: " + str(sumCards(myCards) ))
+    print(dealerCards)
+    print("Dealer score: "  + str(sumCards(dealerCards)))
+else:
+    print("You lose!")
+    print(myCards)
+    print("Your score: " + str(sumCards(myCards)) )
+    print(dealerCards)
+    print("Dealer score: "  + str(sumCards(dealerCards)))
